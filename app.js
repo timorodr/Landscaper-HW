@@ -23,7 +23,7 @@ function upgradeTrimmer() { // function created to purchase a new trimmer and up
         //upgrading our tool to the next value in the array and also checks if we've reached/used the last tool
         const newTool = trimTools[landscaper.trimmer + 1] //variable created for our new tool. We're adding 1 to our value of trimmer our landscaper has. Array[1]
         if(newTool.price <= landscaper.money){ //if statement saying if Array[index value] price is less than or equal to the users money 
-            money -= newTool.price //then we subtract the price of the new trimmer from our users money value
+            landscaper.money -= newTool.price //then we subtract the price of the new trimmer from our users money value
             landscaper.trimmer += 1 // and our users trimmer value increases by 1 to indiciate we are using the next tool we upgraded to
         }else {
             alert("Get your money up, not your funny up to upgrade your trimmer!") // if the 2nd 'if' statement is false the user will receive this alert.
