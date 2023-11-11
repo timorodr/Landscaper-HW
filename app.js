@@ -8,7 +8,8 @@ const trimTools = [ //making an array of all of our tools, how much they cost, a
 
 const landscaper = { // this is the users starting value of money and while trimmer they have
     money: 0,
-    trimmer: 0
+    trimmer: 0,
+    gameWon: false
 }
 
 function trimLawn() { // function created to initiate a lawn trim
@@ -33,4 +34,9 @@ function upgradeTrimmer() { // function created to purchase a new trimmer and up
     }
 }
 
-
+function landscaperWins() {
+    if(landscaper.trimmer === trimTools.length - 1 && landscaper.money === 1000) {
+        alert('You have trimmed all the lawns! You bought a team of starving students...I promise this is legal! You have $1000 in your pocket! And you have won the game!!!')
+        landscaper.gameWon = true
+    }
+}
