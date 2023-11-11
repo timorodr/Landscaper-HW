@@ -1,60 +1,36 @@
-console.log('hello world')
-console.log('is this thing on?')
+const trimTools = [ //making an array of all of our tools, how much they cost, and the money they make while in use
+    {name: 'Teeth', moneyMade: 1, price: 0},
+    {name: 'Rusty Scissors', moneyMade: 5, price: 5},
+    {name: 'Ole Push Mower', moneyMade: 50, price: 25},
+    {name: 'Battery Powered Mower', moneyMade: 100, price: 250},
+    {name: 'Starving Students', moneyMade: 250, price: 500},
+]
 
-
-
-let money = 0
-let teeth = money + 1 // spend the day cutting grass make once singular buck. UNLIMITED. if using teeth can buy rusty scissors
-
-let rustyScissors = money + 5 // These rusty scissors cost 5 bucks, if using rusty scissors for the day of cutting you make 
-//$5 UNLIMITED
-// if you are using rusty scissors you can buy a push mower for $25 only ONCE
-let olePushMower = money - 25
-//if using the ole push mower spend the day cutting for %50. UNLIMITED
-//if at any point you use ole pushMower you can buy a battery-powered mower for $250. ONLY ONCE
-let batteryMower = money - 250
-//Using the the fancy battery-powered lawnmower, you can spend the day cutting lawns and make $100. 
-//You can do this as much as you want.
-let starvingStudents = money - 500
-//At any point, if you are currently using the fancy battery-powered lawnmower, you can hire a team of starving students 
-//for $500. You can do this once, assuming you have enough money.
-//Using the the team of starving students, you can spend the day cutting lawns and make $250. 
-//You can do this as much as you want.
-
-//You win the game when you have a team of starving students and $1000. In this situation, send a message to 
-//the user telling them, they've won.
-
-function teethTrim() { // the purpose of my function is to trim with my teeth
-    money = money + 1 // when I trim with my teeth, my money grows by a singlur buck (ie + 1 to my money)
-    console.log(`You used your teeth to trim this lawn and earned one singular buck. You now have $${money}.`)
-}//when I log my teeth trim the above will tell the landscaper how much money they have.
-teethTrim() //calling the function to run a trim with your teeth 1
-teethTrim() // 2
-teethTrim() // 3
-teethTrim() // 4 george washingtons in my pocket
-// prompt('Cut using teeth?')
-
-function rustyScissorTrim() {
-    money = money + 5
-    console.log(`Careful around the edges, tetanus is REAL! You used rusty scissors to trim this lawn and earned $5. You now have $${money}.`)
+const landscaper = { // this is the users starting value of money and while trimmer they have
+    money: 0,
+    trimmer: 0
 }
-rustyScissorTrim()
 
-function olePushMowerTrim() {
-    money = money + 50
-    console.log(`Ole push mower putting ole presidents in my pocket! You used the ole push mower to trim this lawn and earned $50. You now have $${money}.`)
+function trimLawn() { // function created to initiate a lawn trim
+    const trimmer = trimTools[landscaper.trimmer] // variable created that is equal to which object our trimmer is. Array[0] essentially
+    alert(`You used your ${trimTools.name} to trim this lawn and earned one singular buck. You now have $${trimTools.moneyMade}.`)
+    // alert message updating the user of the tool they have and how much money they currently have
+    landscaper.money += trimTools.moneyMade // user money  equals user money plus which tool we're utilizing and the moneyMade value linked to that tool
 }
-olePushMowerTrim()
 
-function batteryPoweredMowerTrim() {
-    money = money + 100
-    console.log(`Saving on gas and making this cash! You used the battery powered mower to trim this lawn and earned $100. You now have $${money}.`)
+function upgradeTrimmer() { // function created to purchase a new trimmer and upgrade from the previous trim tool.
+    if(landscaper.trimmer + 1 < trimTools.length){ // if the users trimmer is less than the length of our array we will add 1 to our trimmer
+        //upgrading our tool to the next value in the array and also checks if we've reached/used the last tool
+        const newTool = trimTools[landscaper.trimmer + 1] //variable created for our new tool. We're adding 1 to our value of trimmer our landscaper has. Array[1]
+        if(newTool.price <= landscaper.money){ //if statement saying if Array[index value] price is less than or equal to the users money 
+            money -= newTool.price //then we subtract the price of the new trimmer from our users money value
+            landscaper.trimmer += 1 // and our users trimmer value increases by 1 to indiciate we are using the next tool we upgraded to
+        }else {
+            alert("Get your money up, not your funny up to upgrade your trimmer!") // if the 2nd 'if' statement is false the user will receive this alert.
+        }
+    } else {
+    alert("All upgrades have been complete! No more upgrades are available.") // if the 1st 'if' statement is false then the user will receive this alert.
+    }
 }
-batteryPoweredMowerTrim()
-batteryPoweredMowerTrim()
 
-function starvingStudentsTrim() {
-    money = money + 250
-    console.log(`Starving students making improvements! You used the starving students to trim this lawn and earned $250. You now have $${money}.`)
-}
-starvingStudentsTrim()
+
