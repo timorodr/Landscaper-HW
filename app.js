@@ -34,9 +34,29 @@ function upgradeTrimmer() { // function created to purchase a new trimmer and up
     }
 }
 
-function landscaperWins() {
-    if(landscaper.trimmer === trimTools.length - 1 && landscaper.money === 1000) {
+function landscaperWins() { // function to create a winning scenario
+    if(landscaper.trimmer === trimTools.length - 1 && landscaper.money === 1000) { // if our landscaper trimmer is the last object in our array 
+        // and our landscaper (users) money is $1000 you have won the game! You will receieve the alert below!
         alert('You have trimmed all the lawns! You bought a team of starving students...I promise this is legal! You have $1000 in your pocket! And you have won the game!!!')
-        landscaper.gameWon = true
+        landscaper.gameWon = true // our gameWon value in our landscaper variable turns true
     }
+}
+
+alert("Welcome to your first day as a landscaper! Lets get to trimming!!!") // Alert at start of game to give user an intro.
+
+while (!landscaper.gameWon) { // a while loop to allow the game to run in a loop and allow continuous user input until the game is complete at which we have invoked the landscaperWins function
+    const userInput = prompt(`You have acquired $${landscaper.money}, do you want to continue [t]rimming lawns or [u]pgrade your trimmer?`)
+
+    if (userInput === 't') {
+        trimLawn()
+    }
+
+    if (userInput === 'u'){
+        upgradeTrimmer()
+    }
+
+    if (userInput !== 't' && userInput !== 'u') {
+        alert("Not a valid response, please type 't' or 'u'")
+    }
+    landscaperWins()
 }
