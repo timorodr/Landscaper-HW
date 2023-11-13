@@ -14,9 +14,9 @@ const landscaper = { // this is the users starting value of money and while trim
 
 function trimLawn() { // function created to initiate a lawn trim
     const trimmer = trimTools[landscaper.trimmer] // variable created that is equal to which object our trimmer is. Array[0] essentially
-    alert(`You used your ${trimTools.name} to trim this lawn and earned one singular buck. You now have $${trimTools.moneyMade}.`)
+    alert(`You used your ${trimmer.name} to trim this lawn and earned $${trimmer.moneyMade}.`)
     // alert message updating the user of the tool they have and how much money they currently have
-    landscaper.money += trimTools.moneyMade // user money  equals user money plus which tool we're utilizing and the moneyMade value linked to that tool
+    landscaper.money += trimmer.moneyMade // user money  equals user money plus which tool we're utilizing and the moneyMade value linked to that tool
 }
 
 function upgradeTrimmer() { // function created to purchase a new trimmer and upgrade from the previous trim tool.
@@ -35,7 +35,7 @@ function upgradeTrimmer() { // function created to purchase a new trimmer and up
 }
 
 function landscaperWins() { // function to create a winning scenario
-    if(landscaper.trimmer === trimTools.length - 1 && landscaper.money === 1000) { // if our landscaper trimmer is the last object in our array 
+    if(landscaper.trimmer === trimTools.length - 1 && landscaper.money >= 1000) { // if our landscaper trimmer is the last object in our array 
         // and our landscaper (users) money is $1000 you have won the game! You will receieve the alert below!
         alert('You have trimmed all the lawns! You bought a team of starving students...I promise this is legal! You have $1000 in your pocket! And you have won the game!!!')
         landscaper.gameWon = true // our gameWon value in our landscaper variable turns true
@@ -47,16 +47,18 @@ alert("Welcome to your first day as a landscaper! Lets get to trimming!!!") // A
 while (!landscaper.gameWon) { // a while loop to allow the game to run in a loop and allow continuous user input until the game is complete at which we have invoked the landscaperWins function
     const userInput = prompt(`You have acquired $${landscaper.money}, do you want to continue [t]rimming lawns or [u]pgrade your trimmer?`)
 
-    if (userInput === 't') {
+    if (userInput === 't') { // takes user input to invoke function of trimming
         trimLawn()
     }
 
-    if (userInput === 'u'){
+    if (userInput === 'u'){ // takes user input to invoke function of upgrading
         upgradeTrimmer()
     }
 
     if (userInput !== 't' && userInput !== 'u') {
         alert("Not a valid response, please type 't' or 'u'")
     }
+
+    
     landscaperWins()
 }
