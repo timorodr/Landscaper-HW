@@ -42,10 +42,17 @@ function landscaperWins() { // function to create a winning scenario
     }
 }
 
+function reset() {
+    landscaper.money = 0
+    landscaper.trimmer = 0
+    alert(`You have reset your landscaping journey and are at square one with $0 and a set of teeth!`) 
+    }
+
+
 alert("Welcome to your first day as a landscaper! Lets get to trimming!!!") // Alert at start of game to give user an intro.
 
 while (!landscaper.gameWon) { // a while loop to allow the game to run in a loop and allow continuous user input until the game is complete at which we have invoked the landscaperWins function
-    const userInput = prompt(`You have acquired $${landscaper.money}, do you want to continue [t]rimming lawns or [u]pgrade your trimmer?`)
+    const userInput = prompt(`You have acquired $${landscaper.money}, do you want to continue [t]rimming lawns or [u]pgrade your trimmer? If you would like to reset all progress type [r]`)
 
     if (userInput === 't') { // takes user input to invoke function of trimming
         trimLawn()
@@ -55,8 +62,12 @@ while (!landscaper.gameWon) { // a while loop to allow the game to run in a loop
         upgradeTrimmer()
     }
 
-    if (userInput !== 't' && userInput !== 'u') {
+    if (userInput !== 't' && userInput !== 'u' && userInput !== 'r') {
         alert("Not a valid response, please type 't' or 'u'")
+    }
+
+    if (userInput === 'r')  {
+        reset()
     }
 
     
