@@ -6,14 +6,14 @@ const trimTools = [ //making an array of all of our tools, how much they cost, a
     {name: 'Starving Students', moneyMade: 250, price: 500},
 ]
 
-const landscaper = { // this is the users starting value of money and while trimmer they have
+const landscaper = { // this is the users starting value of money and what trimmer they have
     money: 0,
     trimmer: 0,
     gameWon: false
 }
 
 function trimLawn() { // function created to initiate a lawn trim
-    const trimmer = trimTools[landscaper.trimmer] // variable created that is equal to which object our trimmer is. Array[0] essentially
+    const trimmer = trimTools[landscaper.trimmer] // variable created that is accessing our array AND using our object in landscaper to assign a value selected in that array. Array[0] essentially
     alert(`You used your ${trimmer.name} to trim this lawn and earned $${trimmer.moneyMade}.`)
     // alert message updating the user of the tool they have and how much money they currently have
     landscaper.money += trimmer.moneyMade // user money  equals user money plus which tool we're utilizing and the moneyMade value linked to that tool
@@ -25,7 +25,8 @@ function upgradeTrimmer() { // function created to purchase a new trimmer and up
         const newTool = trimTools[landscaper.trimmer + 1] //variable created for our new tool. We're adding 1 to our value of trimmer our landscaper has. Array[1]
         if(newTool.price <= landscaper.money){ //if statement saying if Array[index value] price is less than or equal to the users money 
             landscaper.money -= newTool.price //then we subtract the price of the new trimmer from our users money value
-            landscaper.trimmer += 1 // and our users trimmer value increases by 1 to indiciate we are using the next tool we upgraded to
+            landscaper.trimmer += 1 
+                // and our users trimmer value increases by 1 to indiciate we are using the next tool we upgraded to
         }else {
             alert("Get your money up, not your funny up to upgrade your trimmer!") // if the 2nd 'if' statement is false the user will receive this alert.
         }
@@ -42,7 +43,7 @@ function landscaperWins() { // function to create a winning scenario
     }
 }
 
-function reset() {
+function reset() { // when invoked the user stats reset to 0 and an alert notifies you of the reset
     landscaper.money = 0
     landscaper.trimmer = 0
     alert(`You have reset your landscaping journey and are at square one with $0 and a set of teeth!`) 
@@ -62,11 +63,11 @@ while (!landscaper.gameWon) { // a while loop to allow the game to run in a loop
         upgradeTrimmer()
     }
 
-    if (userInput !== 't' && userInput !== 'u' && userInput !== 'r') {
-        alert("Not a valid response, please type 't' or 'u'")
+    if (userInput !== 't' && userInput !== 'u' && userInput !== 'r') { // takes user input to ensure functions will only run if  't' 'u' or 'r' is typed
+        alert("Not a valid response, please type 't' or 'u' or 'r' ")
     }
 
-    if (userInput === 'r')  {
+    if (userInput === 'r')  { // invokes reset function if user input is 'r'
         reset()
     }
 
